@@ -19,7 +19,7 @@ class LossAndDerivatives:
         return np.mean((X.dot(w) - Y)**2)
 
     @staticmethod
-    def mae(X, Y, w):
+    def mae(X : np.array, Y : np.array, w : np.array):
         """
         X : numpy array of shape (`n_observations`, `n_features`)
         Y : numpy array of shape (`n_observations`, `target_dimentionality`) or (`n_observations`,)
@@ -33,10 +33,10 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE    
-        return 
+        return np.mean(np.abs( X.dot(w) - Y))
 
     @staticmethod
-    def l2_reg(w):
+    def l2_reg(w : np.array):
         """
         w : numpy array of shape (`n_features`, `target_dimentionality`) or (`n_features`,)
 
@@ -47,10 +47,10 @@ class LossAndDerivatives:
         """
         
         # YOUR CODE HERE
-        return 
+        return (w**2).sum() ** 1/2
 
     @staticmethod
-    def l1_reg(w):
+    def l1_reg(w : np.array):
         """
         w : numpy array of shape (`n_features`, `target_dimentionality`)
 
@@ -61,17 +61,17 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return 
+        return np.abs(w).sum()
 
     @staticmethod
-    def no_reg(w):
+    def no_reg(w : np.array):
         """
         Simply ignores the regularization
         """
         return 0.
     
     @staticmethod
-    def mse_derivative(X, Y, w):
+    def mse_derivative(X : np.array, Y : np.array, w : np.array):
         """
         X : numpy array of shape (`n_observations`, `n_features`)
         Y : numpy array of shape (`n_observations`, `target_dimentionality`) or (`n_observations`,)
@@ -87,10 +87,10 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return 
+        return 2 * X.T @ (X.dot(w) - Y) / Y.size 
 
     @staticmethod
-    def mae_derivative(X, Y, w):
+    def mae_derivative(X : np.array, Y : np.array, w : np.array):
         """
         X : numpy array of shape (`n_observations`, `n_features`)
         Y : numpy array of shape (`n_observations`, `target_dimentionality`) or (`n_observations`,)
@@ -106,10 +106,11 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return 
-
+        pred = X.dot(w) - Y
+        return  X.T.dot(np.sign(X.dot(w) - Y)) / Y.size
+    
     @staticmethod
-    def l2_reg_derivative(w):
+    def l2_reg_derivative(w : np.array):
         """
         w : numpy array of shape (`n_features`, `target_dimentionality`) or (`n_features`,)
 
@@ -119,10 +120,10 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return 
+        return 2 * w
 
     @staticmethod
-    def l1_reg_derivative(w):
+    def l1_reg_derivative(w : np.array):
         """
         Y : numpy array of shape (`n_observations`, `target_dimentionality`) or (`n_observations`,)
         w : numpy array of shape (`n_features`, `target_dimentionality`) or (`n_features`,)
@@ -133,10 +134,10 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return 
+        return np.sign(w)
 
     @staticmethod
-    def no_reg_derivative(w):
+    def no_reg_derivative(w : np.array):
         """
         Simply ignores the derivative
         """
